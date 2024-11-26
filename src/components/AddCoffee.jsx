@@ -36,17 +36,20 @@ const AddCoffee = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        Swal.fire({
-          title: "Success!",
-          text: "User added successfully",
-          icon: "success",
-          confirmButtonText: "Cool",
-        });
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Coffee added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
       });
   };
   return (
     <div className="bg-[#F4F3F0] p-24 max-w-screen-lg mx-auto">
       <h2 className="text-4xl font-extrabold text-center">Add a coffee</h2>
+
       <form onSubmit={handleSubmit} className="space-y-6 mt-10">
         {/* Form name and Quantity row */}
         <div className="md:flex items-center justify-center gap-4">
