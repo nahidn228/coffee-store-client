@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaEye, FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
@@ -22,18 +23,38 @@ const CoffeeCard = ({ coffee }) => {
     });
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (_id) => {
+    console.log(_id);
     Swal.fire({
-      title: `Delete ${coffee.name}`,
-      text: "Are you sure you want to delete this coffee?",
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "The coffee has been deleted.", "success");
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+
+        fetch(`http://localhost:5000/coffee/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Coffee has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -72,7 +93,7 @@ const CoffeeCard = ({ coffee }) => {
             </button>
             <button
               className="btn btn-ghost text-red-800 hover:text-red-600"
-              onClick={handleDeleteClick}
+              onClick={() => handleDeleteClick(coffee._id)}
             >
               <FaTrash className="mr-2" /> Delete
             </button>
