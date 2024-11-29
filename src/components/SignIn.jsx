@@ -1,5 +1,25 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+
 const SignIn = () => {
+  const { signInUser } = useContext(AuthContext);
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-gradient-to-br from-yellow-200 via-orange-100 to-yellow-300">
       <div className="hero-content flex-col lg:flex-row-reverse gap-10">
@@ -16,7 +36,7 @@ const SignIn = () => {
 
         {/* Sign-In Form */}
         <div className="card w-full max-w-sm shadow-2xl bg-white text-gray-800 rounded-lg">
-          <form className="card-body">
+          <form onSubmit={handleSignIn} className="card-body">
             {/* Email Input */}
             <div className="form-control">
               <label className="label">
