@@ -58,6 +58,7 @@ const Users = () => {
               <th className="px-4 py-2 text-left">Name</th>
               <th className="px-4 py-2 text-left">Email</th>
               <th className="px-4 py-2 text-left">Created At</th>
+              <th className="px-4 py-2 text-left">Last Login</th>
               <th className="px-4 py-2 text-left">Action</th>
             </tr>
           </thead>
@@ -72,6 +73,7 @@ const Users = () => {
                 <td className="px-4 py-2">
                   {user.createdAt ? user.createdAt : "Not available"}
                 </td>
+                <td className="px-4 py-2">{user.lastSignInTime ?user.lastSignInTime : "Not available" }</td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     onClick={() => handleDelete(user._id)}
