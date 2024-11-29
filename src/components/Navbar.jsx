@@ -65,14 +65,14 @@ const Navbar = () => {
           {/* Sign Up Link */}
           <li>
             <NavLink
-              to="/updateCoffee"
+              to="/users"
               className={({ isActive }) =>
                 isActive
                   ? "btn btn-sm bg-white text-brown-800 font-bold border-brown-800 shadow-md"
                   : "btn btn-sm btn-outline text-brown-800 border-brown-800 hover:bg-yellow-500 hover:border-none hover:text-white"
               }
             >
-              Update Coffee
+              Users
             </NavLink>
           </li>
 
