@@ -42,7 +42,7 @@ const CoffeeCard = ({ coffee }) => {
         //   icon: "success",
         // });
 
-        fetch(`http://localhost:5000/coffee/${_id}`, {
+        fetch(`https://coffee-store-server-bay-one.vercel.app/coffee/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

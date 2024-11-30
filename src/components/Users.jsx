@@ -19,7 +19,7 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //Delete from the DataBase
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://coffee-store-server-bay-one.vercel.app/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -73,7 +73,9 @@ const Users = () => {
                 <td className="px-4 py-2">
                   {user.createdAt ? user.createdAt : "Not available"}
                 </td>
-                <td className="px-4 py-2">{user.lastSignInTime ?user.lastSignInTime : "Not available" }</td>
+                <td className="px-4 py-2">
+                  {user.lastSignInTime ? user.lastSignInTime : "Not available"}
+                </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     onClick={() => handleDelete(user._id)}
